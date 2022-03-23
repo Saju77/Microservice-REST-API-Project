@@ -1,0 +1,12 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: TEAM-SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ctrends
+    username: postgres
+    password: 1234
+  jpa:
+    show-sql: true
