@@ -18,10 +18,4 @@ public class ApiCloudGatewayApplication {
 		SpringApplication.run(ApiCloudGatewayApplication.class, args);
 	}
 
-	@LoadBalanced
-	@Bean
-	public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
-
 }
