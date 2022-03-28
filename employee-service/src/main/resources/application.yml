@@ -5,7 +5,10 @@ server:
 ctrends:
   app:
     jwtSecret: ctrendsSecretKey
-    jwtExpirationMs: 86400000
+#    1 min = 60000 ms
+#    24 h = 86400000 ms
+#    48 h = 172800000 ms
+    jwtExpirationMs: 172800000
 
 spring:
   application:

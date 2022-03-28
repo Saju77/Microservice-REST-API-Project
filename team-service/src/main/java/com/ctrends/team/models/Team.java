@@ -1,17 +1,39 @@
-package com.ctrends.team.model;
+package com.ctrends.team.models;
+
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
+@Table(	name = "team")
 public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long tmId;
+
+    @NotBlank
+    @Size(max = 100)
     private String tmName;
+
+    @NotBlank
+    @Size(max = 150)
     private String projName;
+
+    @NotBlank
+    @Size(max = 250)
     private String projDesc;
+
+    @NotBlank
+    @Size(max = 50)
     private String tmLeader;
+
+    @NotNull
+    @Max(25)
     private int totMember;
 
     public Team() {

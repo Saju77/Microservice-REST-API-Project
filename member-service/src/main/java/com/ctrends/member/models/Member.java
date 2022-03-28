@@ -1,14 +1,34 @@
-package com.ctrends.team.model;
+package com.ctrends.member.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
+@Entity
+@Table(	name = "member")
 public class Member {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long mId;
+
+    @NotBlank
+    @Size(max = 100)
     private String mName;
+
+    @NotBlank
+    @Size(max = 100)
     private String designation;
+
+    @NotBlank
+    @Size(min = 11,max = 14)
     private String mobileNo;
+
+    @NotBlank
+    @Size(max = 100)
+    @Email
     private String email;
+
+    @NotNull
     private long tmId;
 
     public Member() {

@@ -1,6 +1,6 @@
 package com.ctrends.member.service;
 
-import com.ctrends.member.model.Member;
+import com.ctrends.member.models.Member;
 import com.ctrends.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

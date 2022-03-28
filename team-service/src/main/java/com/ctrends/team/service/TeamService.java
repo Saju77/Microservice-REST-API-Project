@@ -1,6 +1,6 @@
 package com.ctrends.team.service;
 
-import com.ctrends.team.model.Team;
+import com.ctrends.team.models.Team;
 import com.ctrends.team.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
