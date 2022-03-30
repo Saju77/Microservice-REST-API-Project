@@ -1,0 +1,10 @@
+{
+    "empname": "MUHAMMAD MARUF HASAN",
+    "username": "mmhasan",
+    "email": "mmhasan@gmail.com",
+    "password": "mmhasan",
+    "designation": "Acting Team Leader, UX Design",
+    "mobileno": "01*********",
+    "address": "address of M. M. Hasan",
+    "roles": ["user","admin"]
+}

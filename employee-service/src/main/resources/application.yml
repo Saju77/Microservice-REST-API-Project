@@ -5,9 +5,6 @@ server:
 ctrends:
   app:
     jwtSecret: ctrendsSecretKey
-#    1 min = 60000 ms
-#    24 h = 86400000 ms
-#    48 h = 172800000 ms
     jwtExpirationMs: 172800000
 
 spring:
@@ -17,6 +14,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/ctrends
     username: postgres
     password: 1234
+    initialization-mode: always
   jpa:
     show-sql: true
     properties:
@@ -25,8 +23,12 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
+  sql:
+    init:
+      mode: always
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

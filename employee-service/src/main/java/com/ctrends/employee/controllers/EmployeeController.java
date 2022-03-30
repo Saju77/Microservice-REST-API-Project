@@ -200,7 +200,7 @@ public class EmployeeController {
         }else{
             Employee employee2 = employeeService.getEmployeeById(empId);
 
-            if(userDetails.getUsername().equals(employee.getUsername())){
+            if(userDetails.getUsername().equals(employee2.getUsername())){
                 return employeeService.updateEmployee(empId, employee);
             }
         }

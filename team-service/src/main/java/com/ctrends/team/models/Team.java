@@ -26,14 +26,14 @@ public class Team {
     private String tmName;
 
     @NotBlank
-    @Size(max = 150)
-    @ApiModelProperty(notes = "3. Project Name of a team", required = true)
-    private String projName;
+    @Size(max = 250)
+    @ApiModelProperty(notes = "3. Details/description of that team", required = true)
+    private String tmDetails;
 
     @NotBlank
     @Size(max = 250)
-    @ApiModelProperty(notes = "4. Description of that project", required = true)
-    private String projDesc;
+    @ApiModelProperty(notes = "4. Activities of that team", required = true)
+    private String tmActivities;
 
     @NotBlank
     @Size(max = 50)
@@ -48,10 +48,10 @@ public class Team {
     public Team() {
     }
 
-    public Team(String tmName, String projName, String projDesc, String tmLeader, int totMember) {
+    public Team(String tmName, String tmDetails, String tmActivities, String tmLeader, int totMember) {
         this.tmName = tmName;
-        this.projName = projName;
-        this.projDesc = projDesc;
+        this.tmDetails = tmDetails;
+        this.tmActivities = tmActivities;
         this.tmLeader = tmLeader;
         this.totMember = totMember;
     }
@@ -72,20 +72,20 @@ public class Team {
         this.tmName = tmName;
     }
 
-    public String getProjName() {
-        return projName;
+    public String getTmDetails() {
+        return tmDetails;
     }
 
-    public void setProjName(String projName) {
-        this.projName = projName;
+    public void setTmDetails(String tmDetails) {
+        this.tmDetails = tmDetails;
     }
 
-    public String getProjDesc() {
-        return projDesc;
+    public String getTmActivities() {
+        return tmActivities;
     }
 
-    public void setProjDesc(String projDesc) {
-        this.projDesc = projDesc;
+    public void setTmActivities(String tmActivities) {
+        this.tmActivities = tmActivities;
     }
 
     public String getTmLeader() {
