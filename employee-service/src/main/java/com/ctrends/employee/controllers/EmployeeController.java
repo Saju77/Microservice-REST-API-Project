@@ -12,6 +12,8 @@ import com.ctrends.employee.repository.RoleRepository;
 import com.ctrends.employee.security.jwt.JwtUtils;
 import com.ctrends.employee.security.services.EmployeeDetailsImpl;
 import com.ctrends.employee.services.EmployeeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,9 +34,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/employees")
+@Api( tags = "Employee")
 public class EmployeeController {
 
     @Autowired
@@ -56,6 +59,8 @@ public class EmployeeController {
     JwtUtils jwtUtils;
 
     @PostMapping("/signup")
+    @ApiOperation(value = "Signup employee with giving necessary information",
+                    notes = "Create employee with admin or user role")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
 
         if (employeeRepository.existsByUsername(signupRequest.getUsername())) {
@@ -96,11 +101,6 @@ public class EmployeeController {
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
                         break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-                        break;
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -114,6 +114,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/signin")
+    @ApiOperation(value = "SignIn into employee account",
+                    notes = "Have to provide accurate username and password")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -137,12 +139,19 @@ public class EmployeeController {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Get all employee details",
+                    notes = "This method is only accessible by admin",
+                    response = Employee.class,
+                    responseContainer = "List")
     public List<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
     }
 
     @PutMapping("/{empId}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "Update employee details",
+                    notes = "An employee can update their own details and admin can update anyone",
+                    response = Employee.class)
     public Employee updateEmployee(@PathVariable("empId") Long empId, @RequestBody SignupRequest signupRequest){
 
         // update existing user's account
@@ -170,11 +179,6 @@ public class EmployeeController {
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
-                        break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
                         break;
                     default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -206,12 +210,17 @@ public class EmployeeController {
 
     @DeleteMapping("/{empId}")
     @PreAuthorize("hasRole('ADMIN')")
+    @ApiOperation(value = "Delete employee details",
+                    notes = "This method is only accessible by admin")
     public void deleteEmployee(@PathVariable("empId") Long empId){
         employeeService.deleteEmployee(empId);
     }
 
     @GetMapping("/{empId}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "find employee by ID",
+                    notes = "Admin and user both can access this method",
+                    response = Employee.class)
     public Employee getEmployeeById(@PathVariable("empId") Long empId){
 
         UserDetails userDetails =  (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -234,6 +243,9 @@ public class EmployeeController {
 
     @GetMapping("/email/{email}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @ApiOperation(value = "find an employee by Email",
+            notes = "Admin and user both can access this method",
+            response = Employee.class)
     public Employee getEmployeeByEmail(@PathVariable("email") String email){
 
         UserDetails userDetails =  (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

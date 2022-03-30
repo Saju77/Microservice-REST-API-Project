@@ -1,12 +1,27 @@
 package com.ctrends.team.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Details about member")
 public class Member {
 
+    @ApiModelProperty(notes = "1. The unique id of member")
     private long mId;
+
+    @ApiModelProperty(notes = "2. Name of a member", required = true)
     private String mName;
+
+    @ApiModelProperty(notes = "3. Designation of that member")
     private String designation;
+
+    @ApiModelProperty(notes = "4. Mobile Number of that member")
     private String mobileNo;
+
+    @ApiModelProperty(notes = "5. Email of that member")
     private String email;
+
+    @ApiModelProperty(notes = "6. The id of team")
     private long tmId;
 
     public Member() {

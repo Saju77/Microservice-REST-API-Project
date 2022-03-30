@@ -26,12 +26,14 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public void deleteMember(Long tmId){
-        memberRepository.deleteById(tmId);
+    public void deleteMember(Long mId){
+        memberRepository.deleteById(mId);
     }
 
-    public Member getMemberById(Long tmId){
-        return memberRepository.findById(tmId).get();
+    public Member getMemberById(Long mId){
+        return memberRepository.findById(mId).get();
     }
+
+    public List<Member> getAllMembersByTmId(Long tmId){ return memberRepository.getAllMembersByTmId(tmId);}
 
 }

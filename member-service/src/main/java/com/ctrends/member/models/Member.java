@@ -1,34 +1,44 @@
 package com.ctrends.member.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
 @Table(	name = "member")
+@ApiModel(description = "Details about member")
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "1. The unique id of member")
     private long mId;
 
     @NotBlank
     @Size(max = 100)
+    @ApiModelProperty(notes = "2. Name of a member", required = true)
     private String mName;
 
     @NotBlank
     @Size(max = 100)
+    @ApiModelProperty(notes = "3. Designation of that member", required = true)
     private String designation;
 
     @NotBlank
     @Size(min = 11,max = 14)
+    @ApiModelProperty(notes = "4. Mobile Number of that member", required = true)
     private String mobileNo;
 
     @NotBlank
     @Size(max = 100)
     @Email
+    @ApiModelProperty(notes = "5. Email of that member", required = true)
     private String email;
 
     @NotNull
+    @ApiModelProperty(notes = "6. The id of team", required = true)
     private long tmId;
 
     public Member() {

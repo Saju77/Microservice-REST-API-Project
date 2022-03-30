@@ -1,39 +1,51 @@
 package com.ctrends.employee.payloads.request;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Set;
 
 import javax.validation.constraints.*;
- 
+
+@ApiModel(description = "Details about employee's signupRequest")
 public class SignupRequest {
 
     @NotBlank
     @Size(min = 3, max = 50)
+    @ApiModelProperty(notes = "1. Full name of an employee", required = true)
     private String empname;
 
     @NotBlank
     @Size(min = 3, max = 20)
+    @ApiModelProperty(notes = "2. Unique username of an employee", required = true)
     private String username;
  
     @NotBlank
     @Size(max = 50)
     @Email
+    @ApiModelProperty(notes = "3. Unique email of an employee", required = true)
     private String email;
 
     @NotBlank
     @Size(min = 6, max = 40)
+    @ApiModelProperty(notes = "4. Password of an employee", required = true)
     private String password;
 
+    @ApiModelProperty(notes = "5. List of roles of an employee")
     private Set<String> role;
 
     @NotBlank
     @Size(max = 100)
+    @ApiModelProperty(notes = "6. Designation of an employee")
     private String designation;
 
     @NotBlank
     @Size(max = 15)
+    @ApiModelProperty(notes = "7. Mobile number of an employee")
     private String mobileno;
 
     @Size(max = 250)
+    @ApiModelProperty(notes = "8. Address of an employee")
     private String address;
 
     public String getEmpname() {

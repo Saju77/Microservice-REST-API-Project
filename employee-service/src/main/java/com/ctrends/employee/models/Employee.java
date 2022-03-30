@@ -1,5 +1,8 @@
 package com.ctrends.employee.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,44 +20,53 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
+@ApiModel(description = "Details about employees")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "1. The unique id of employee")
     private Long id;
 
     @NotBlank
     @Size(max = 50)
+    @ApiModelProperty(notes = "2. Full name of an employee", required = true)
     private String empname;
 
     @NotBlank
     @Size(max = 20)
+    @ApiModelProperty(notes = "3. Unique username of an employee", required = true)
     private String username;
 
     @NotBlank
     @Size(max = 50)
     @Email
+    @ApiModelProperty(notes = "4. Unique email of an employee", required = true)
     private String email;
 
     @NotBlank
     @Size(max = 120)
+    @ApiModelProperty(notes = "5. Password of an employee", required = true)
     private String password;
 
-    @NotBlank
     @Size(max = 100)
+    @ApiModelProperty(notes = "6. Designation of an employee")
     private String designation;
 
     @NotBlank
     @Size(max = 15)
+    @ApiModelProperty(notes = "7. Mobile number of an employee")
     private String mobileno;
 
     @Size(max = 250)
+    @ApiModelProperty(notes = "8. Address of an employee")
     private String address;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "employee_roles",
             joinColumns = @JoinColumn(name = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ApiModelProperty(notes = "9. List of roles of an employee")
     private Set<Role> roles = new HashSet<>();
 
     public Employee() {

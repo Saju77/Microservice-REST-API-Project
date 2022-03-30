@@ -1,5 +1,7 @@
 package com.ctrends.team.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -10,30 +12,37 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(	name = "team")
+@ApiModel(description = "Details about team")
 public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "1. The unique id of team")
     private long tmId;
 
     @NotBlank
     @Size(max = 100)
+    @ApiModelProperty(notes = "2. Name of a team", required = true)
     private String tmName;
 
     @NotBlank
     @Size(max = 150)
+    @ApiModelProperty(notes = "3. Project Name of a team", required = true)
     private String projName;
 
     @NotBlank
     @Size(max = 250)
+    @ApiModelProperty(notes = "4. Description of that project", required = true)
     private String projDesc;
 
     @NotBlank
     @Size(max = 50)
+    @ApiModelProperty(notes = "5. Leader of that team", required = true)
     private String tmLeader;
 
     @NotNull
     @Max(25)
+    @ApiModelProperty(notes = "6. Total number of members", required = true)
     private int totMember;
 
     public Team() {
