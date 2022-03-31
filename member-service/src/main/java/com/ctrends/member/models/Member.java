@@ -24,7 +24,7 @@ public class Member {
     @NotBlank
     @Size(max = 100)
     @ApiModelProperty(notes = "3. Designation of that member", required = true)
-    private String designation;
+    private String position;
 
     @NotBlank
     @Size(min = 11,max = 14)
@@ -44,9 +44,9 @@ public class Member {
     public Member() {
     }
 
-    public Member(String mName, String designation, String mobileNo, String email, long tmId) {
+    public Member(String mName, String position, String mobileNo, String email, long tmId) {
         this.mName = mName;
-        this.designation = designation;
+        this.position = position;
         this.mobileNo = mobileNo;
         this.email = email;
         this.tmId = tmId;
@@ -68,12 +68,12 @@ public class Member {
         this.mName = mName;
     }
 
-    public String getDesignation() {
-        return designation;
+    public String getPosition() {
+        return position;
     }
 
-    public void setDesignation(String designation) {
-        this.designation = designation;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getMobileNo() {

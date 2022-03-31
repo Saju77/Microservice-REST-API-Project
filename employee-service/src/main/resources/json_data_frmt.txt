@@ -1,3 +1,4 @@
+-- To SignUp new Employee :
 {
     "empname": "MUHAMMAD MARUF HASAN",
     "username": "mmhasan",
@@ -6,5 +7,11 @@
     "designation": "Acting Team Leader, UX Design",
     "mobileno": "01*********",
     "address": "address of M. M. Hasan",
-    "roles": ["user","admin"]
+    "role": ["user","admin"]
+}
+
+-- To SignIn Employee account :
+{
+    "username": "mmhasan",
+    "password": "mmhasan"
 }

@@ -1,0 +1,8 @@
+--To save new Member :
+{
+    "mName": "MUHAMMAD MARUF HASAN",
+    "designation": "Details about Software Architect Team",
+    "mobileNo": "Activity details about Software Architect Team",
+    "email": "MUHAMMAD MARUF HASAN",
+    "tmId": 1
+}

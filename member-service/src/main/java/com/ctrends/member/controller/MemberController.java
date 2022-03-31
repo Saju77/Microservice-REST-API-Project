@@ -1,6 +1,7 @@
 package com.ctrends.member.controller;
 
 import com.ctrends.member.models.Member;
+import com.ctrends.member.models.Team;
 import com.ctrends.member.service.MemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -16,6 +18,9 @@ import java.util.List;
 @RequestMapping("/members")
 @Api(tags = "Member")
 public class MemberController {
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Autowired
     private MemberService memberService;
@@ -36,7 +41,14 @@ public class MemberController {
             notes = "This method is only accessible by admin",
             response = Member.class)
     public Member saveMember(@RequestBody Member member){
-        return memberService.saveMember(member);
+
+        Team team = restTemplate.getForObject("http://TEAM-SERVICE/teams/tmId/" + member.getTmId(), Team.class);
+
+        if(team.getTmId() != 0){
+            return memberService.saveMember(member);
+        }else {
+            return null;
+        }
     }
 
     @PutMapping("/{mId}")

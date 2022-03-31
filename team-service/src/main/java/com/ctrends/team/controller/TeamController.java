@@ -72,6 +72,14 @@ public class TeamController {
         return teamService.getTeamById(tmId);
     }
 
+    @GetMapping("/tmId/{tmId}")
+    @ApiOperation(value = "Get a team details by id",
+            notes = "This api is used for members-service",
+            response = Team.class)
+    public Team getTeamByIdForMembers(@PathVariable("tmId") Long tmId){
+        return teamService.getTeamById(tmId);
+    }
+
     @GetMapping("/{tmId}/members")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @ApiOperation(value = "Get all members details based on desire team id",

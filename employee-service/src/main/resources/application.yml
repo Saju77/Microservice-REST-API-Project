@@ -11,7 +11,7 @@ spring:
   application:
     name: EMPLOYEE-SERVICE
   datasource:
-    url: jdbc:postgresql://localhost:5432/ctrends
+    url: jdbc:postgresql://localhost:5432/ctrends_evidence
     username: postgres
     password: 1234
     initialization-mode: always

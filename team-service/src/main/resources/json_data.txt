@@ -1,0 +1,8 @@
+-- To create new Team :
+{
+    "tmName": "Software Architect Team",
+    "tmDetails": "Details about Software Architect Team",
+    "tmActivities": "Activity details about Software Architect Team",
+    "tmLeader": "MUHAMMAD MARUF HASAN",
+    "totMember": 5
+}
