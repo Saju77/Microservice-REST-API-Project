@@ -1,6 +1,6 @@
 # Microservice-REST-API-Project
 => Some initial steps to run the project : 
-  1. Create a database schema(name: ctrends_evidence) in postgreSQL if you want to use postgreSQL database and tables will create automatically.
+  1. Create a database schema(name: ctrends_evidence) in postgreSQL if you want to use postgreSQL database and all tables will create automatically.
     Note: Comment out the 'PostgreSQL Driver' and uncomment the 'H2 Database' if you want to use 'H2 Database'.
   2. Run the services step by step : -> I. discovery-server(port:8761) -> II. config-server(port:9296) -> III. employee-service(port:9001) -> IV. team-service(port:9002)
                                      -> V. member-service(port:9003) -> VI. api-cloud-gateway(port:9191)
